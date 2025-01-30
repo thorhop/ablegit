@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+TEMP_FILE=$(mktemp)
+trap 'rm -f "$TEMP_FILE"' EXIT
+
+# Read input into temp file
+cat > "$TEMP_FILE"
+
+# Recompress with gzip -1
+gzip -1c "$TEMP_FILE"

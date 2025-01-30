@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+TEMP_FILE=$(mktemp)
+trap 'rm -f "$TEMP_FILE"' EXIT
+
+# Extract the gzipped content to XML
+gzip -dc > "$TEMP_FILE"
+
+# Clean away lines containing `<Path `, because it reveals username
+# Alternatively, uncomment this cat line to keep these lines.
+#cat "$TEMP_FILE"
+grep -v "<Path " "$TEMP_FILE" || true
