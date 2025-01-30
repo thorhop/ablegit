@@ -11,7 +11,7 @@ fi
 mkdir -p .git/hooks
 
 # Copy hooks from template
-cp .git-template/hooks/* .git/hooks/
+cp .git-template/* .git/hooks/
 
 # Make hooks executable
 chmod +x .git/hooks/ableton-clean
@@ -25,8 +25,8 @@ if [ ! -f .gitattributes ]; then
 fi
 
 # Configure git
-git config --local filter.ableton.clean "$(pwd)/.git/hooks/ableton-clean"
-git config --local filter.ableton.smudge ".$(pwd)/.git/hooks/ableton-smudge"
+git config --local filter.ableton.clean "'$(pwd)/.git/hooks/ableton-clean'"
+git config --local filter.ableton.smudge "'$(pwd)/.git/hooks/ableton-smudge'"
 git config --local filter.ableton.required true
 
 echo "Template setup complete!"
